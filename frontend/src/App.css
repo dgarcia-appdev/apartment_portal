@@ -2,7 +2,6 @@
 @import "tailwindcss";
 
 @theme {
-
   --color-primary: #3B413C;
   --color-secondary: #9DB5B2;
   --color-accent: #C4AEF1;
@@ -12,6 +11,5 @@
   --font-heading: "Montserrat", "sans-serif"; 
   --font-body: "Roboto", "sans-serif";
 }
-
 
 /* Removed default css, use tailwind*/
