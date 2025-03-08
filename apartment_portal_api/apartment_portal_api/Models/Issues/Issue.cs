@@ -1,5 +1,6 @@
 ﻿using apartment_portal_api.Models.IssueTypes;
 using apartment_portal_api.Models.Users;
+using apartment_portal_api.Models.Statuses;
 
 namespace apartment_portal_api.Models.Issues;
 
@@ -15,6 +16,6 @@ public partial class Issue
 
     // Linking properties for EF Core
     public virtual IssueType IssueType { get; set; } = null!;
-
+    public virtual Status Status { get; set; } = null!;
     public virtual ApplicationUser ApplicationUser { get; set; } = null!;
 }

@@ -5,7 +5,7 @@ namespace apartment_portal_api.DTOs
         public required int Id { get; set; }
         public required string FirstName { get; set; }
         public required string LastName { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateOnly DateOfBirth { get; set; }
         public int StatusId { get; set; }
     }
 

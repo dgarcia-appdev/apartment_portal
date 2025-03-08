@@ -101,19 +101,19 @@ public class GuestController : ControllerBase
         return NoContent();
     }
 
-    [HttpGet("{guestId:int}/parking-permits")]
-    public async Task<ActionResult<ParkingPermitDTO>> GetGuestParkingPermits(int guestId)
+    [HttpGet("{id:int}/parking-permits")]
+    public async Task<ActionResult<ParkingPermitDTO>> GetGuestParkingPermits(int id)
     {
-        var guest = await _unitOfWork.GuestRepository.GetAsync(guestId);
+        var guests = await _unitOfWork.GuestRepository.GetAsync(p => p.Id == id, includeProperties: nameof(Guest.ParkingPermits));
+        var guest = guests.FirstOrDefault();
         if (guest is null) return NotFound();
     
-        var permits = await _unitOfWork.ParkingPermitRepository.GetAsync(p => p.GuestId == guestId);
-        var permitDTOs = _mapper.Map<IEnumerable<ParkingPermitDTO>>(permits);
+        var permitDTOs = _mapper.Map<IEnumerable<ParkingPermitDTO>>(guest.ParkingPermits);
 
         return Ok(permitDTOs);
     }
 
-    [HttpPatch("{guestId:int}/parking-permits/{id:int}")]
+    [HttpPatch("{id:int}/parking-permits/{permitId:int}")]
     public async Task<ActionResult<ParkingPermitDTO>> EditGuestParkingPermits(int id, ParkingPermitPatchDTO patchData)
     {
         if (id != patchData.Id) return BadRequest();
@@ -128,7 +128,7 @@ public class GuestController : ControllerBase
         return Ok(editedParkingPermitDTO);
     }
 
-    [HttpDelete("{guestId:int}/parking-permits/{id:int}")]
+    [HttpDelete("{id:int}/parking-permits/{permitId:int}")]
     public async Task<ActionResult<ParkingPermitDTO>> DeleteGuestParkingPermits(int id)
     {
         var parkingPermitToDelete = await _unitOfWork.ParkingPermitRepository.GetAsync(id);

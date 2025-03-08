@@ -6,6 +6,7 @@ using apartment_portal_api.Models.Issues;
 using apartment_portal_api.Models.Packages;
 using apartment_portal_api.Models.Statuses;
 using apartment_portal_api.Models.Users;
+using apartment_portal_api.Models.UnitUsers;
 
 namespace apartment_portal_api.Data;
 
@@ -19,6 +20,7 @@ public class UnitOfWork : IUnitOfWork
     private IRepository<Status>? _statusRepository;
     private IRepository<Unit>? _unitRepository;
     private IRepository<ApplicationUser>? _userRepository;
+    private IRepository<UnitUser>? _unitUserRepository;
 
     public UnitOfWork(PostgresContext context)
     {
@@ -84,6 +86,14 @@ public class UnitOfWork : IUnitOfWork
         {
             _userRepository ??= new Repository<ApplicationUser>(_context);
             return _userRepository;
+        }
+    }
+    public IRepository<UnitUser> UnitUserRepository
+    {
+        get
+        {
+            _unitUserRepository ??= new Repository<UnitUser>(_context); 
+            return _unitUserRepository;
         }
     }
 
