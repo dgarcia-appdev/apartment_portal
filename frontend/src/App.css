@@ -12,6 +12,13 @@
   --font-body: "Roboto", "sans-serif";
 }
 
+
+@layer base {
+  body {
+    @apply bg-background;
+  }
+}
+
 /* Removed default css, use tailwind*/
 
 /* button {
