@@ -1,4 +1,4 @@
-import HeroCard from "./components/HeroCard";
+import HeroCard from "../tenantDashboard/components/HeroCard";
 
 const TenantDashboard = () => {
     const notifications = [
