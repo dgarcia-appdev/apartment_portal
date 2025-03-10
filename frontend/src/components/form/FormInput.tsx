@@ -32,7 +32,7 @@ const FormInput = ({
                     bg-transparent 
                     text-black 
                     border-b 
-                    border-content-background 
+                    border-primary 
                     focus:outline-none 
                     focus:border-primary 
                     placeholder:text-secondary 
