@@ -1,23 +1,52 @@
-import { useForm } from 'react-hook-form';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import FormInput from './FormInput';
 
-const FormDateInputSchema = (minDate: Date, maxDate: Date) => z.object({
-    date: z.coerce.date()
-        .refine((date) => date < maxDate, { message: "Date cannot be in the future" })
-        .refine((date) => date > minDate, { message: "Date must be after 1900" })
-});
+interface FormDateInputProps {
+    label?: string;
+    error?: string;
+    value: string;
+    onChange: (value: string) => void;
+    className?: string;
+    placeholder?: string;
+    minDate?: string;
+    maxDate?: string;
+}
 
-const FormDateInput = ({ minDate = new Date(1900, 0, 1), maxDate = new Date() }) => {
-    const schema = FormDateInputSchema(minDate, maxDate);
-    const { register, handleSubmit, formState: { errors } } = useForm({ resolver: zodResolver(schema) });
+const FormDateInput = ({
+    label,
+    error,
+    value,
+    onChange,
+    className = '',
+    placeholder,
+    minDate = '1900-01-01',
+    maxDate = new Date().toISOString().split('T')[0],
+    ...props
+}: FormDateInputProps) => {
+    const validateDate = (date: string) => {
+        const parsedDate = new Date(date);
+        const min = new Date(minDate);
+        const max = new Date(maxDate);
+
+        if (parsedDate < min) return "Date must be after 1900";
+        if (parsedDate > max) return "Date cannot be in the future";
+        return null;
+    };
+
+    const validationError = validateDate(value) || error;
 
     return (
-        <form onSubmit={handleSubmit(console.log)}>
-            <input type="date" {...register("date")} />
-            {errors.date && <p>{errors.date.message}</p>}
-            <button type="submit">Submit</button>
-        </form>
+        <FormInput
+            type="date"
+            label={label}
+            error={validationError}
+            value={value}
+            placeholder={placeholder}
+            onChange={(e) => onChange(e.target.value)}
+            min={minDate}
+            max={maxDate}
+            className={`${className}`}
+            {...props}
+        />
     );
 };
 

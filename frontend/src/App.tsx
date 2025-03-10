@@ -3,8 +3,10 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Home from "./components/Home/Home";
 import UserProfile from "./components/UserProfile";
 import "./App.css";
-import FormDemo from "./pages/FormDemo";
-import TenantDashboard from "./tenantDashboard/TenantDashboard";
+import {
+  FormDemo,
+  TenantDashboard,
+} from "./pages";
 // import ManageGuests from "./pages/ManageGuests";
 
 function App() {

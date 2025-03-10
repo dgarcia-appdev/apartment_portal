@@ -4,6 +4,7 @@ import {
     FormInput,
     FormSelect,
     FormPhoneInput,
+    FormDateInput,
 } from '../components/form';
 
 const FormDemo = () => {
@@ -24,7 +25,7 @@ const FormDemo = () => {
     return (
         <div className="min-h-screen bg-background p-8">
             <div className="w-full mx-auto space-y-8">
-                <h1 className="text-xl font-bold text-primary mb-8">Form Components</h1>
+                <h1 className="text-2xl text-center font-bold mb-8">Form Components</h1>
 
                 <Card className="p-8">
                     <h2 className="text-2xl font-semibold mb-6">Basic Form Fields</h2>
@@ -42,6 +43,12 @@ const FormDemo = () => {
                         onChange={(value) => handleChange('phone', value)}
                     />
 
+                    <FormDateInput
+                        label="Date"
+                        value={formData.date}
+                        onChange={(value) => handleChange('date', value)}
+                    />
+
                     <FormSelect
                         label="Select Service"
                         value={formData.type}
@@ -55,7 +62,7 @@ const FormDemo = () => {
                     />
                 </Card>
             </div>
-        </div>
+        </div >
     );
 };
 

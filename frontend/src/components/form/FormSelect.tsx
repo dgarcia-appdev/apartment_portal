@@ -34,8 +34,8 @@ const FormSelect = ({
                         py-2 
                         bg-transparent 
                         text-secondary border-b 
-                        border-content-background 
-                        focus:border-primary
+                        border-primary 
+                        focus:border-content-background
                         focus:outline-none appearance-none 
                         ${className}`}
                     {...props}>
