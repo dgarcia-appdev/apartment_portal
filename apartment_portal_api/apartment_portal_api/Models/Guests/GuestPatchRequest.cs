@@ -6,5 +6,5 @@ namespace apartment_portal_api.Models.Guests;
      string? LastName,
      string? Email,
      string? PhoneNumber,
-     string? AccessCode,
+     int? AccessCode,
      DateTime? Expiration);

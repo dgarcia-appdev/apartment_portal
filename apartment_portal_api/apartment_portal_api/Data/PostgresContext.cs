@@ -103,6 +103,12 @@ public partial class PostgresContext : IdentityDbContext<ApplicationUser, Identi
                 .HasDefaultValueSql("(now() AT TIME ZONE 'utc'::text)")
                 .HasColumnName("createdOn");
             entity.Property(e => e.Description).HasColumnName("description");
+            entity.Property(e => e.StatusId).HasColumnName("statusId");
+
+            entity.HasOne(e => e.Status).WithMany(status => status.Issues)
+                .HasForeignKey(d => d.StatusId)
+                .OnDelete(DeleteBehavior.Restrict)
+                .HasConstraintName("issues_statusId_fkey");
 
             entity.HasOne(d => d.IssueType).WithMany(p => p.Issues)
                 .HasForeignKey(d => d.IssueTypeId)

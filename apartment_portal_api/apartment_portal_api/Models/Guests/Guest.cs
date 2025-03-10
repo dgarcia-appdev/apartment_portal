@@ -16,7 +16,7 @@ public class Guest
     public string Email { get; set; } = null!;
     public string PhoneNumber { get; set; } = null!;
     
-    public string? AccessCode { get; set; }
+    public int AccessCode { get; set; }
 
     public DateTime Expiration { get; set; }
     public DateTime CreatedOn { get; set; }

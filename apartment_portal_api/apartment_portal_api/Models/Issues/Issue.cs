@@ -14,6 +14,8 @@ public partial class Issue
 
     public string Description { get; set; } = null!;
 
+    public int StatusId { get; set; }
+
     // Linking properties for EF Core
     public virtual IssueType IssueType { get; set; } = null!;
     public virtual Status Status { get; set; } = null!;
