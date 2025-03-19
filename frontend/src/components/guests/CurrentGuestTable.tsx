@@ -1,18 +1,23 @@
 import { useState } from "react";
 import GuestProfileIcon from "./GuestProfileIcon";
 
-export default function CurrentGuestTable() {
+interface Guest {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  duration: string;
+  carMake?: string;
+  carModel?: string;
+  carColor?: string;
+  licensePlate?: string;
+}
+interface CurrentGuestTableProps {
+  currentGuests?: Guest[];
+}
+
+export default function CurrentGuestTable({currentGuests = []}: CurrentGuestTableProps) {
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const currentGuests = [
-    { name: "Dennis Garcia", timeRemaining: "3h 56m" },
-    { name: "Alex Smith", timeRemaining: "2h 30m" },
-    { name: "Jane Doe", timeRemaining: "1h 15m" },
-    { name: "Alex Smith", timeRemaining: "2h 30m" },
-    { name: "Alex Smith", timeRemaining: "2h 30m" },
-    { name: "Alex Smith", timeRemaining: "2h 30m" },
-    { name: "Alex Smith", timeRemaining: "2h 30m" },
-  ];
 
   const displayedGuests = isExpanded ? currentGuests : currentGuests.slice(0, 3);
 
@@ -21,8 +26,8 @@ export default function CurrentGuestTable() {
       <td className="p-2">
         <GuestProfileIcon />
       </td>
-      <td className="p-2 text-nowrap">{guest.name.length > 15 ? guest.name.substring(0, 15) + "..." : guest.name}</td>
-      <td className="font-bold p-2">{guest.timeRemaining}</td>
+      <td className="p-2 text-nowrap"></td>
+      <td className="font-bold p-2"></td>
     </tr>
   ));
 
